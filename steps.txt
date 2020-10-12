@@ -1,0 +1,24 @@
+//Instalar de manera global el ionic/cli 
+npm install -g @ionic/cli native-run cordova-res
+//Empezar una app ionic con Angular y Capacitor con un template precargado
+ionic start photo-gallery tabs --type=angular --capacitor
+//Dentor del dir de la app, cargar los elementos PWA para usar mejor el hardware
+cd photo-gallery
+npm install @ionic/pwa-elements
+//Para hacer uso de los componentes debemos umportarlos en el src/main.ts
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+//Call the element loader after the platform has been bootstrapped
+defineCustomElements(window);
+//Complete una nueva compilación de su proyecto Ionic, corrigiendo cualquier error que informe.
+ionic build
+//Crea los poryectos iOS y Android
+ionic cap add ios
+ionic cap add android
+//Copiar los cambios del build en los proyectos nativos
+ionic cap copy
+//Cada vez que se anade un plugin hay que hacer una synchro
+ionic cap sync
+//Configurar correctamente los permisos de camara en el AndroidManifest.xml
+Links
+https://ionicframework.com/docs/angular/your-first-app/6-deploying-mobile
+https://github.com/ionic-team/tutorial-photo-gallery-angular/blob/main/src/app/services/photo.service.ts
